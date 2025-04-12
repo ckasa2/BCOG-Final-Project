@@ -7,7 +7,7 @@ colors = ["red", "blue", "green", "yellow"]
 words = ["red", "blue", "green", "yellow"]
 #outline of the stroop test script
 
-def start_experiment():
+def run_stroop_test():
     pass
 
 # function to show stimulus
