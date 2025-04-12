@@ -25,3 +25,24 @@ log_data()
 save_to_csv()
 - saves the test data to a csv file
 
+
+Data format for results:
+
+trial_number 
+- number of trial
+- integer
+word
+- text shown
+- string
+font_color
+- color of the text
+- string
+correct_response
+- expected key pressed
+- string
+user_response
+- actual key pressed
+- string
+reaction_time
+- time before key pressed(in seconds)
+- float
