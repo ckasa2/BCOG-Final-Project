@@ -16,12 +16,16 @@ The stroop effect can be used to indicate attention fatigue or the decreased abi
 Functions:
 run_stroop_test()
 - launches the gui
+
 show_stimuli()
 - creates list of words with their assigned colors
+
 show_stimulus(word,color)
 - displays one stimulus on the screen
+
 log_data()
 - records the reaction time
+
 save_to_csv()
 - saves the test data to a csv file
 
@@ -31,18 +35,23 @@ Data format for results:
 trial_number 
 - number of trial
 - integer
+
 word
 - text shown
 - string
+
 font_color
 - color of the text
 - string
+
 correct_response
 - expected key pressed
 - string
+
 user_response
 - actual key pressed
 - string
+
 reaction_time
 - time before key pressed(in seconds)
 - float
