@@ -8,7 +8,7 @@ import os
 colors = ["red", "blue", "green", "yellow"]
 words = colors[:]                
 num_trials = 20                # short demo?
-sav_dir = "results"                 
+save_dir = "results"                 
 save_csv = os.path.join(save_dir, "stroop_results.csv")
 
 # make sure that the results folder exists \
@@ -104,7 +104,7 @@ class StroopGUI:
 
     def end_experiment(self):
         self.canvas.delete("all")
-        self.canvas.create_text(200, 100, text="All done!\nThanks.", font=("Helvetica", 24))
+        self.canvas.create_text(200, 100, text="Test Completed!\nThanks.", font=("Helvetica", 24))
         save_csv()\
 
 
