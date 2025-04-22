@@ -66,8 +66,6 @@ Progress Report #3
 Concept:The concept is an interactive desktop Stroop‑test that logs reaction time and accuracy to CSV. It follows the prompt and is not simple. (1/1)
 
 
-
-
 File Structure: have src/, results/, readme, and stroop_test files. They all have reasonable names, and the repository conforms to kebab case. (1/1)
 
 Project Description: There is a description of the project in the readme file. (2/2)
