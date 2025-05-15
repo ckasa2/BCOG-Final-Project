@@ -18,7 +18,8 @@ os.makedirs(save_dir, exist_ok=True)
 trial_data = []           
 
 def log_trial(trial_num, word, ink, response, correct, rt_ms):
-    #append trial data t
+
+    #append trial data 
     trial_data.append(
         {"trial_number": trial_num,
          "word": word,
@@ -37,6 +38,7 @@ def save_csv():
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(trial_data)
+
     print(f" Data written to {save_csv_path}")
 
     #AI attribution: Used ChatGPT
@@ -62,9 +64,10 @@ class StroopGUI:
         self.canvas.create_text(
             200, 80,
             text=("Type the INK COLOR for each word.\n"
-                  "Keys: r = red, g = green, b = blue, y = yellow\n"
+                  "Keys: r= red, g = green, b = blue, y = yellow\n"
                   "Press space to start."),
             justify="center", font=("Helvetica", 14))
+        
         #bind spacebar = start
         self.root.bind("<space>", self.show_next_trial)
         #any key pressed = user response
