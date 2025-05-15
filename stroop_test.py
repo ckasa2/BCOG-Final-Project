@@ -7,14 +7,15 @@ import os
 
 colors = ["red", "blue", "green", "yellow"]
 words = colors[:]                
-num_trials = 20                # short demo?
+num_trials = 20                # 20 trials per experiment
 save_dir = "results"                 
-save_csv = os.path.join(save_dir, "stroop_results.csv")
+save_csv_path = os.path.join(save_dir, "stroop_results.csv")
 
-# make sure that the results folder exists \
+# make sure that the results folder exists 
 os.makedirs(save_dir, exist_ok=True)
 
-trial_data = []              # list of dicts, one per trial
+#store trial data
+trial_data = []           
 
 def log_trial(trial_num, word, ink, response, correct, rt_ms):
     #append trial data t
@@ -31,13 +32,17 @@ def save_csv():
     #weite trial_data to save_csv
     if not trial_data:
         return
-    fieldnames = ["trial_number", "word", "ink_color",
-                  "response", "correct", "rt_ms"]
-    with open(save_csv, "w", newline="") as f:
+    fieldnames = ["trial_number", "word", "ink_color", "response", "correct", "rt_ms"]
+    with open(save_csv_path, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(trial_data)
-    print(f"✅ Data written to {save_csv}")
+    print(f" Data written to {save_csv_path}")
+
+    #AI attribution: Used ChatGPT
+    #Prompt: Why am I getting typeError and data isn't being saved after trial
+    #Suggested I change save_csv to save_csv_path because I accidently named a variable the same as the save_csv function.
+
 
 class StroopGUI:
     def __init__(self):
@@ -60,7 +65,9 @@ class StroopGUI:
                   "Keys: r = red, g = green, b = blue, y = yellow\n"
                   "Press space to start."),
             justify="center", font=("Helvetica", 14))
+        #bind spacebar = start
         self.root.bind("<space>", self.show_next_trial)
+        #any key pressed = user response
         self.root.bind("<Key>",   self.key_handler)
 
     def show_next_trial(self, event=None):
@@ -85,7 +92,7 @@ class StroopGUI:
 
     # key presses for responses 
     def key_handler(self, event):
-        if self.start_time is None:          # to ignore key presses before first word shown
+        if self.start_time is None:   # to ignore key presses before first word shown
             return
 
         key_map = {"r": "red", "g": "green", "b": "blue", "y": "yellow"}
@@ -94,10 +101,10 @@ class StroopGUI:
             return
 
         rt_ms   = (time.perf_counter() - self.start_time) * 1000
+        #rt in milliseconds
         correct = (response == self.current_ink)
 
-        log_trial(self.trial_num, self.current_word,
-                  self.current_ink, response, correct, rt_ms)
+        log_trial(self.trial_num, self.current_word, self.current_ink, response, correct, rt_ms)
 
         self.start_time = None               
         self.show_next_trial()              
@@ -105,10 +112,11 @@ class StroopGUI:
     def end_experiment(self):
         self.canvas.delete("all")
         self.canvas.create_text(200, 100, text="Test Completed!\nThanks.", font=("Helvetica", 24))
-        save_csv()\
+        
+        save_csv() 
 
 
-        self.root.after(2000, self.root.destroy)
+        self.root.after(2000, self.root.destroy)   #close application after 2000 milliseconds = 2 seconds
 
     def run(self):
         self.root.mainloop()
